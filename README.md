@@ -56,7 +56,12 @@ This installs the skills only. For `entry`, also connect the MCP server: [steps 
 
 ## Your data
 
-Signing in is OAuth: you choose which Entries an agent may reach and what it may do, and you can disconnect at any time in Entry under Settings → Integrations. An agent can't publish, unpublish or change your live page. See [entry.fyi/developers](https://entry.fyi/developers) and the [privacy policy](https://entry.fyi/privacy).
+This plugin runs no code on your machine. It talks to two Entry services, both run by Entry:
+
+- **`https://entry.fyi/mcp`** (the `entry` skill and the MCP server). Signing in is OAuth: you choose which Entries an agent may reach and what it may do, and you can disconnect at any time in Entry under Settings → Integrations. The agent reads your profile and drafts, including details you haven't published, and what it creates (drafts, profile proposals, publication requests) is saved in your Entry until you delete it. Entry keeps a record of what a connected assistant did for 13 months. An agent can't publish, unpublish or change your live page.
+- **`https://api.entry.fyi/api/v1`** (the `entry-public-profiles` skill). Anonymous, read-only requests for published Entries: the handle, id or search text the agent looks up is sent there. No account or key, and nothing is written.
+
+Entry is for people aged 16 and over. See [entry.fyi/developers](https://entry.fyi/developers), the [privacy policy](https://entry.fyi/privacy) and the [terms](https://entry.fyi/terms).
 
 ## Support
 
