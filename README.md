@@ -24,6 +24,10 @@ Then run `/mcp` and sign in to Entry in your browser.
 codex plugin marketplace add entry-fyi/skills
 ```
 
+### Cursor
+
+Add Entry from the [Cursor Marketplace](https://cursor.com/marketplace), or [add just the server](https://cursor.com/en/install-mcp?name=entry&config=eyJ1cmwiOiJodHRwczovL2VudHJ5LmZ5aS9tY3AifQ%3D%3D).
+
 ### Gemini CLI
 
 ```bash
@@ -46,7 +50,8 @@ This installs the skills only. For `entry`, also connect the MCP server: [steps 
 |---|---|
 | `skills/*/SKILL.md` | Every client that reads [Agent Skills](https://agentskills.io/specification) |
 | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.mcp.json` | Claude Code plugins |
-| `plugin.json`, `mcp.json`, `.agents/plugins/marketplace.json` | [Agent Plugins](https://agent-plugins.org) (Codex, Cursor) |
+| `.cursor-plugin/plugin.json`, `assets/logo.png` | Cursor plugins (its MCP server is `.mcp.json`) |
+| `plugin.json`, `mcp.json`, `.agents/plugins/marketplace.json` | [Agent Plugins](https://agent-plugins.org) (Codex) |
 | `gemini-extension.json` | Gemini CLI extensions |
 
 ## Your data

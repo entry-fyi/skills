@@ -1,0 +1,21 @@
+{
+  "name": "entry",
+  "displayName": "Entry",
+  "version": "1.0.0",
+  "minClientVersions": {
+    "cursor": "3.13.0"
+  },
+  "description": "Work with your Entry (entry.fyi): read your profile and drafts, write and edit drafts, propose profile changes and ask to publish. You approve every public change in Entry.",
+  "author": {
+    "name": "Entry",
+    "email": "hello@entry.fyi"
+  },
+  "homepage": "https://entry.fyi/developers",
+  "repository": "https://github.com/entry-fyi/skills",
+  "license": "MIT",
+  "logo": "assets/logo.png",
+  "keywords": ["entry", "mcp", "profile", "personal website", "writing", "drafts", "publishing"],
+  "category": "integrations",
+  "tags": ["entry", "writing", "profile", "mcp"],
+  "mcpServers": "./.mcp.json"
+}
