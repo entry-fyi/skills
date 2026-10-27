@@ -50,7 +50,7 @@ This installs the skills only. For `entry`, also connect the MCP server: [steps 
 |---|---|
 | `skills/*/SKILL.md` | Every client that reads [Agent Skills](https://agentskills.io/specification) |
 | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.mcp.json` | Claude Code plugins |
-| `.cursor-plugin/plugin.json`, `assets/logo.png` | Cursor plugins (its MCP server is `.mcp.json`) |
+| `.cursor-plugin/plugin.json` and the logo in the assets folder | Cursor plugins (its MCP server is `.mcp.json`) |
 | `plugin.json`, `mcp.json`, `.agents/plugins/marketplace.json` | [Agent Plugins](https://agent-plugins.org) (Codex) |
 | `gemini-extension.json` | Gemini CLI extensions |
 
