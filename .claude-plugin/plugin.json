@@ -1,9 +1,27 @@
 {
   "name": "entry",
+  "displayName": "Entry",
+  "version": "1.0.0",
   "description": "Work with your Entry (entry.fyi) from Claude Code: read your profile and drafts, write drafts, propose profile changes and ask to publish. You approve every public change in Entry.",
-  "author": { "name": "Entry", "email": "hello@entry.fyi", "url": "https://entry.fyi" },
+  "author": {
+    "name": "Entry",
+    "email": "hello@entry.fyi",
+    "url": "https://entry.fyi"
+  },
   "homepage": "https://entry.fyi/developers",
   "repository": "https://github.com/entry-fyi/skills",
   "license": "MIT",
-  "keywords": ["entry", "mcp", "profile", "personal website", "writing", "drafts"]
+  "keywords": [
+    "entry",
+    "mcp",
+    "profile",
+    "personal website",
+    "writing",
+    "drafts"
+  ],
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://entry.fyi/developers",
+  "supportUrl": "https://entry.fyi/developers/support",
+  "privacyPolicyUrl": "https://entry.fyi/privacy",
+  "termsOfServiceUrl": "https://entry.fyi/terms"
 }
