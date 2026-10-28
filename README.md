@@ -53,7 +53,7 @@ npm install -g @entry-fyi/cli
 entry login
 ```
 
-Needs Node 22 or later, and `@entry-fyi/cli` 0.1.0 or later (`entry --version`). Installing it does not sign in, open a browser or contact Entry. `entry login` opens Entry in your browser, where you choose which Entries the command line may reach and what it may do; `entry logout` revokes it. A scheduled job with no browser uses an access token you make in Entry under Settings → Integrations, set as `ENTRY_API_KEY`. The plugin's skills never install it without asking you.
+Needs Node 22 or later, and `@entry-fyi/cli` 0.1.0 or later (`entry --version`). Installing it does not sign in, open a browser or contact Entry. `entry login` opens Entry in your browser, where you see what the command line will be able to do and choose which Entries it may reach; `entry logout` revokes it. A scheduled job with no browser uses an access token you make in Entry under Settings → Integrations, set as `ENTRY_API_KEY`. The plugin's skills never install it without asking you.
 
 ## What's in this repository
 
