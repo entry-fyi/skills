@@ -21,7 +21,7 @@ entry auth status --json
 
 It shows which credential is in use, its scopes and the Entries it reaches. If it fails with `cli_no_credentials` (exit 3), ask the owner to sign in. Do not ask them to paste anything.
 
-- On the owner's machine: run `entry login`. It opens Entry in their browser, where they approve and choose which Entries to share; wait for it to finish. If no browser can open, `entry login --no-browser` prints an address for the owner to open themselves. Do not copy the address, a code or a callback into chat beyond showing the owner the address to open.
+- On the owner's machine: run `entry login`. It opens Entry in their browser, where they approve and choose which Entries to share. Tell the owner that a browser window is waiting for their approval, then wait: the command ends by itself when they have approved (or after five minutes). If no browser can open, `entry login --no-browser` prints an address for the owner to open themselves. Do not copy the address, a code or a callback into chat beyond showing the owner the address to open.
 - For a scheduled job with no browser: the owner makes an access token in Entry under Settings → Integrations and provides it as `ENTRY_API_KEY`. You do not create, read or print it. An invalid key fails; it never falls back to another account.
 
 Exit 3 with `forbidden` names the missing scope in `error.details.requiredScope`: the owner has to run `entry login` again, or make a token with that scope.
@@ -44,6 +44,8 @@ With exactly one Entry the id can be left out. With several, `cli_entry_required
 | "Update the introduction of this draft." | `entry drafts get drf_… --json`, then `entry drafts update drf_… --base-revision <data.revision> --body-file revised.md --idempotency-key <job>-edit --json`. A new body replaces the whole body: send the complete text. |
 | "Prepare this for publication." | `entry drafts get drf_… --json`, then `entry publication request drf_… --base-revision <data.revision> --idempotency-key <job>-publication --json`. Report it as waiting for the owner. Check later with `entry publication get pub_… --json`. |
 | "Change my bio to …" | Write `{ "changes": { "bio": "…" }, "note": "why" }` to a file, then `entry profile propose --input proposal.json --idempotency-key <job>-profile --json`. The live profile stays as it is until the owner approves. `entry profile proposal get prp_… --json` shows its status. |
+
+The revision a write names is `data.revision` from your latest read or write response of that draft; a new draft has one too. The title is its own field: do not repeat it as a heading in the body. If the draft changes after you ask for publication, the request can go `stale`: ask again with the new revision.
 
 Writes send an `Idempotency-Key`: pass `--idempotency-key` with a stable value for the task, or the CLI makes one and echoes it in `meta.cli.idempotencyKey`. Use the same key to retry the same request, never a new one.
 
