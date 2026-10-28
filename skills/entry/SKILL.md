@@ -1,20 +1,29 @@
 ---
 name: entry
-description: Work with the owner's Entry, their personal page and writing at entry.fyi, through Entry's MCP server. Use when the owner asks to see their Entry profile or drafts, write or edit a draft, propose a change to their profile, or get a draft published.
+description: Work with the owner's Entry, their personal page and writing at entry.fyi, through Entry's MCP server or, for a local agent with a shell, the Entry command line. Use when the owner asks to see their Entry profile or drafts, write or edit a draft, propose a change to their profile, or get a draft published.
 license: MIT
 metadata:
   author: Entry
   homepage: https://entry.fyi/developers
   mcp-server: https://entry.fyi/mcp
+  cli: "@entry-fyi/cli 0.1.0 or later"
 ---
 
 # Working with Entry
 
-Entry is the owner's own page at entry.fyi: who they are, what they do, and their writing. Connected to Entry's MCP server, you can read their profile and drafts, write and edit drafts, propose profile changes and ask them to publish. The owner approves everything public in Entry.
+Entry is the owner's own page at entry.fyi: who they are, what they do, and their writing. Through Entry's MCP server or the `entry` command line, you can read their profile and drafts, write and edit drafts, propose profile changes and ask them to publish. The owner approves everything public in Entry.
 
-## Before you start
+## Before you start: pick a transport
 
-This skill needs Entry's MCP server, `https://entry.fyi/mcp`. If its tools (`list_entries`, `get_draft`, …) are not available, tell the owner to connect it and point them to https://entry.fyi/developers#connect. A few common ways:
+1. **MCP, if it is connected.** If Entry's tools (`list_entries`, `get_draft`, …) are available, use them and follow the rest of this file. Do not also install the CLI.
+2. **Otherwise the CLI, if you can run shell commands.** Run `entry --version`. If it prints 0.1.0 or later, follow [references/cli.md](references/cli.md) instead of the tool names below: the requests, rules and limits are the same, the commands differ. If `entry` is not found or is older, tell the owner that `npm install -g @entry-fyi/cli` installs it (Node 22 or later) and ask before you run it. Installing it signs nothing in.
+3. **Neither:** tell the owner to connect the MCP server (below) or to install the CLI, and stop. Do not call Entry's API with raw HTTP, and do not ask for a token.
+
+Never read, print or ask for a credential, and never inspect environment variables or the credential store. Sign-in is always the owner's step: OAuth in their browser (`entry login` for the CLI, or connecting the MCP server), or an access token they set up themselves for a scheduled job.
+
+### Connecting MCP
+
+The MCP server is `https://entry.fyi/mcp`. If its tools are not available and the owner prefers it, point them to https://entry.fyi/developers#connect. A few common ways:
 
 - Claude Code: `claude mcp add --transport http entry https://entry.fyi/mcp`, then `/mcp` to sign in.
 - Codex CLI: `codex mcp add entry --url https://entry.fyi/mcp`, then `codex mcp login entry`.
@@ -38,7 +47,7 @@ Signing in is OAuth: the owner signs in to Entry in their browser and picks whic
 4. **"Prepare this for publication."** Read it with `get_draft`, then `request_publication` with its revision. Tell the owner it is waiting for their approval in Entry. Never say it is published or live until `get_publication_status` says `"published"`.
 5. **"Change my bio to …"** Use `propose_profile_update`. The owner approves it in Entry; until then the live profile is unchanged.
 
-## Tools
+## Tools (MCP)
 
 | Tool | What it does |
 |---|---|
@@ -69,7 +78,7 @@ Keep every field within its limit; the tool schemas state them too.
 
 When a save refuses a field, the result names the field and its limit and keeps the rest. Fix that field and save again.
 
-## Errors
+## Errors (MCP)
 
 A failed call returns `isError: true` with `{ code, message, details }`:
 
@@ -80,4 +89,4 @@ A failed call returns `isError: true` with `{ code, message, details }`:
 - `rate_limited`: wait `details.retryAfter` seconds before trying again.
 - `limit_reached`: waiting won't help; the owner has to act in Entry.
 
-More: https://entry.fyi/developers#mcp
+More: https://entry.fyi/developers#mcp (MCP) and https://entry.fyi/developers#cli (command line)
