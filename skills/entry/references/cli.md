@@ -45,7 +45,7 @@ With exactly one Entry the id can be left out. With several, `cli_entry_required
 | "Prepare this for publication." | `entry drafts get drf_… --json`, then `entry publication request drf_… --base-revision <data.revision> --idempotency-key <job>-publication --json`. Report it as waiting for the owner. Check later with `entry publication get pub_… --json`. |
 | "Change my bio to …" | Write `{ "changes": { "bio": "…" }, "note": "why" }` to a file, then `entry profile propose --input proposal.json --idempotency-key <job>-profile --json`. The live profile stays as it is until the owner approves. `entry profile proposal get prp_… --json` shows its status. |
 
-The revision a write names is `data.revision` from your latest read or write response of that draft; a new draft has one too. The title is its own field: do not repeat it as a heading in the body. If the draft changes after you ask for publication, the request can go `stale`: ask again with the new revision.
+The revision a write names is `data.revision` from your latest read or write response of that draft; a new draft has one too, and it can start above 1. The title is its own field: do not repeat it as a heading in the body. If the draft changes after you ask for publication, the request can go `stale`: ask again with the new revision.
 
 Writes send an `Idempotency-Key`: pass `--idempotency-key` with a stable value for the task, or the CLI makes one and echoes it in `meta.cli.idempotencyKey`. Use the same key to retry the same request, never a new one.
 
