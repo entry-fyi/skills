@@ -1,6 +1,6 @@
 ---
 name: entry
-description: Work with the owner's Entry, their personal page and writing at entry.fyi, through Entry's MCP server or, for a local agent with a shell, the Entry command line. Use when the owner asks to see their Entry profile or drafts, write or edit a draft, propose a change to their profile, or get a draft published.
+description: Work with the owner's Entry, their personal page and writing at entry.fyi, through Entry's MCP server or, when MCP can't be used, the Entry command line. Use when the owner asks to see their Entry profile or drafts, write or edit a draft, propose a change to their profile, or get a draft published.
 license: MIT
 metadata:
   author: Entry
@@ -15,15 +15,21 @@ Entry is the owner's own page at entry.fyi: who they are, what they do, and thei
 
 ## Before you start: pick a transport
 
-1. **MCP, if it is connected.** If Entry's tools (`list_entries`, `get_draft`, …) are available, use them and follow the rest of this file. Do not also install the CLI.
-2. **Otherwise the CLI, if you can run shell commands.** Run `entry --version`. If it prints 0.1.0 or later, follow [references/cli.md](references/cli.md) instead of the tool names below: the requests, rules and limits are the same, the commands differ. If `entry` is not found or is older, tell the owner that `npm install -g @entry-fyi/cli` installs it (Node 22 or later) and ask before you run it. Installing it signs nothing in.
-3. **Neither:** tell the owner to connect the MCP server (below) or to install the CLI, and stop. Do not call Entry's API with raw HTTP, and do not ask for a token.
+Entry's MCP server is the main way to work with Entry. The `entry` command line is a fallback for when MCP can't be used.
+
+1. **MCP, if it is connected.** If Entry's tools (`list_entries`, `get_draft`, …) are available, use them and follow the rest of this file. Do not suggest, install or run the CLI.
+2. **Not connected: offer MCP first.** Tell the owner Entry's MCP server isn't connected and offer to help connect it ([Connecting MCP](#connecting-mcp)). Once they have connected and signed in, use its tools. Some clients only show new tools after a restart or in a new session: if they don't appear, say so. Go to step 3 instead only when:
+   - the owner declines MCP or says they prefer the command line (don't offer MCP again in this conversation);
+   - the task is a scheduled or unattended job the owner set up to run with the CLI, with no one there to sign in;
+   - MCP can't run here: the client can't add MCP servers, or can't sign one in from this session (for example a headless run).
+3. **The CLI, if you can run shell commands.** Run `entry --version`. If it prints 0.1.0 or later, follow [references/cli.md](references/cli.md) instead of the tool names below: the requests, rules and limits are the same, the commands differ. If `entry` is not found or is older, tell the owner that `npm install -g @entry-fyi/cli` installs it (Node 22 or later) and ask before you run it. Installing it signs nothing in.
+4. **Neither works:** tell the owner what is missing, point them to https://entry.fyi/developers#connect, and stop. Do not call Entry's API with raw HTTP, and do not ask for a token.
 
 Never read, print or ask for a credential, and never inspect environment variables or the credential store. Sign-in is always the owner's step: OAuth in their browser (`entry login` for the CLI, or connecting the MCP server), or an access token they set up themselves for a scheduled job.
 
 ### Connecting MCP
 
-The MCP server is `https://entry.fyi/mcp`. If its tools are not available and the owner prefers it, point them to https://entry.fyi/developers#connect. A few common ways:
+The MCP server is `https://entry.fyi/mcp`. When its tools are not available, offer these steps first (step 2 above); every client is at https://entry.fyi/developers#connect. A few common ways:
 
 - Claude Code: `claude mcp add --transport http entry https://entry.fyi/mcp`, then `/mcp` to sign in.
 - Codex CLI: `codex mcp add entry --url https://entry.fyi/mcp`, then `codex mcp login entry`.

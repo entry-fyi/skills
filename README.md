@@ -4,7 +4,7 @@
 
 | Skill | What it teaches |
 |---|---|
-| [`entry`](skills/entry/SKILL.md) | Working with **your own** Entry through `https://entry.fyi/mcp`, or through the `entry` command line when an agent runs on your machine and MCP is not connected: read your profile and drafts, write and edit drafts, propose profile changes and ask you to publish. The right tool or command for each request, revisions and conflicts, field limits, and the rule that you approve everything public. |
+| [`entry`](skills/entry/SKILL.md) | Working with **your own** Entry through `https://entry.fyi/mcp`, or, when MCP can't be used, through the `entry` command line on your machine: read your profile and drafts, write and edit drafts, propose profile changes and ask you to publish. The right tool or command for each request, revisions and conflicts, field limits, and the rule that you approve everything public. |
 | [`entry-public-profiles`](skills/entry-public-profiles/SKILL.md) | Looking up **published** Entries through the public, read-only API (no account or key): search, profiles, work, projects, writing and links. |
 
 ## Install
@@ -46,7 +46,7 @@ This installs the skills only. For `entry`, also connect the MCP server ([steps 
 
 ### The `entry` command line (optional, for agents on your machine)
 
-For a local agent that can run shell commands, or a scheduled job, the `entry` skill can use the [`entry` command line](https://entry.fyi/developers#cli) instead of MCP. The skill uses MCP when it is connected and the command line otherwise.
+For a local agent that can run shell commands, or a scheduled job, the `entry` skill can use the [`entry` command line](https://entry.fyi/developers#cli) instead of MCP. MCP comes first: when it isn't connected, the skill offers to connect it, and uses the command line only if you decline, for a scheduled job, or where MCP can't run.
 
 ```bash
 npm install -g @entry-fyi/cli

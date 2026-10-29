@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "entry",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Read your Entry profile and writing drafts, write and edit drafts, propose profile changes and ask to publish. You approve every public change in Entry.",
   "author": { "name": "Entry", "email": "hello@entry.fyi", "url": "https://entry.fyi" },
   "homepage": "https://entry.fyi/developers",

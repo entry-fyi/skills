@@ -1,6 +1,6 @@
 {
   "name": "entry",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Entry's MCP server and skills: read your Entry profile and drafts, write drafts, propose profile changes and ask to publish.",
   "mcpServers": {
     "entry": { "httpUrl": "https://entry.fyi/mcp" }
