@@ -48,7 +48,7 @@ Signing in is OAuth: the owner signs in to Entry in their browser and picks whic
 ## Common requests
 
 1. **"Show my unfinished drafts."** Get the Entry id with `list_entries` (most owners have one), then `list_drafts` with `state: "working"`.
-2. **"Write an article about my recent work."** Read `get_entry_profile` and the live posts (`list_drafts`, `state: "published"`) first, and use only facts found there or given by the owner. Do not invent facts, quotes or numbers. Then `create_draft` with a Markdown body.
+2. **"Write an article about my recent work."** Read `get_entry_profile` and the live posts (`list_drafts`, `state: "published"`) first, and use only facts found there or given by the owner. Do not invent facts, quotes or numbers. Then `create_draft` with a Markdown body (see [Writing the body](#writing-the-body)).
 3. **"Update the introduction of this draft."** Read it with `get_draft`, then `update_draft` with the `revision` it returned as `baseRevision`. `patch.body` replaces the body, so send the complete new text, not just the changed paragraph. On a `conflict`, read the draft again and redo the change on top of it.
 4. **"Prepare this for publication."** Read it with `get_draft`, then `request_publication` with its revision. Tell the owner it is waiting for their approval in Entry. Never say it is published or live until `get_publication_status` says `"published"`.
 5. **"Change my bio to …"** Use `propose_profile_update`. The owner approves it in Entry; until then the live profile is unchanged.
@@ -83,6 +83,25 @@ Keep every field within its limit; the tool schemas state them too.
 | `note` on a proposal or a publication request | 500 characters |
 
 When a save refuses a field, the result names the field and its limit and keeps the rest. Fix that field and save again.
+
+## Writing the body
+
+A draft's `body` is Entry's own Markdown, and nothing else is read as markup:
+
+- `## ` headings (one level only), `- ` or `1. ` lists (one line per item, no nesting), `> ` quotes
+- `*italic*`, `**bold**`, `` `code` ``, `[links](https://…)` (https and mailto only) and `[^1]` notes, each defined on its own line as `[^1]: …`
+- fenced code blocks, with an optional language (```` ```ts ````)
+- **prompt blocks**: a fenced block whose language is `prompt`. Entry shows it labelled "Prompt", wrapped like the text around it and with a Copy button, so readers can paste it into their own assistant. Use one when the post shares a prompt the owner wrote or uses, never for code or quotes.
+
+````markdown
+Here is the prompt I start every review with:
+
+```prompt
+Review this diff as a careful senior engineer. List the three riskiest changes first.
+```
+````
+
+Code blocks get a Copy button too. Anything else (images, tables, rules, `###` headings) is not markup in Entry and shows as plain text, so leave it out.
 
 ## Errors (MCP)
 

@@ -49,7 +49,7 @@ The revision a write names is `data.revision` from your latest read or write res
 
 Writes send an `Idempotency-Key`: pass `--idempotency-key` with a stable value for the task, or the CLI makes one and echoes it in `meta.cli.idempotencyKey`. Use the same key to retry the same request, never a new one.
 
-Input is `--input file.json` (or `-` for stdin), or `--title` with `--body-file file.md` (or `-`). They cannot be combined. Write the Markdown to a file rather than into the command line. Nothing prompts and no editor opens.
+Input is `--input file.json` (or `-` for stdin), or `--title` with `--body-file file.md` (or `-`). They cannot be combined. Write the Markdown to a file rather than into the command line. The body uses the same grammar as MCP, prompt blocks (```` ```prompt ````) included: see [Writing the body](../SKILL.md#writing-the-body). Nothing prompts and no editor opens.
 
 ## Results and errors
 
