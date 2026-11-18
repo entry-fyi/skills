@@ -81,8 +81,9 @@ Keep every field within its limit; the tool schemas state them too.
 | profile `name`, `headline`, `bio`, `location`, `website` | 80 / 120 / 1,000 / 80 / 200 characters |
 | profile `links` | at most 8; label 40, address 200 characters |
 | `note` on a proposal or a publication request | 500 characters |
+| media lines in `body` | 20 embeds and videos per post; 3 pictures (Free) or 30 (Pro); description 300, caption 200 characters |
 
-When a save refuses a field, the result names the field and its limit and keeps the rest. Fix that field and save again.
+When a save refuses a field, the result names the field and its limit and keeps the rest. Fix that field and save again. A body refused for its media names `media`: `tooManyEmbeds`, `tooManyPictures`, or `unknownPicture` (a picture key that isn't this draft's).
 
 ## Writing the body
 
@@ -92,6 +93,7 @@ A draft's `body` is Entry's own Markdown, and nothing else is read as markup:
 - `*italic*`, `**bold**`, `` `code` ``, `[links](https://…)` (https and mailto only) and `[^1]` notes, each defined on its own line as `[^1]: …`
 - fenced code blocks, with an optional language (```` ```ts ````)
 - **prompt blocks**: a fenced block whose language is `prompt`. Entry shows it labelled "Prompt", wrapped like the text around it and with a Copy button, so readers can paste it into their own assistant. Use one when the post shares a prompt the owner wrote or uses, never for code or quotes.
+- **media lines**: an X post, a GitHub repository, a YouTube or Vimeo video, a video file, or a picture the owner added (see [Embeds, videos and pictures](#embeds-videos-and-pictures))
 
 ````markdown
 Here is the prompt I start every review with:
@@ -101,7 +103,36 @@ Review this diff as a careful senior engineer. List the three riskiest changes f
 ```
 ````
 
-Code blocks get a Copy button too. Anything else (images, tables, rules, `###` headings) is not markup in Entry and shows as plain text, so leave it out.
+Code blocks get a Copy button too. Anything else (tables, rules, `###` headings, an image inside a sentence) is not markup in Entry and shows as plain text, so leave it out.
+
+### Embeds, videos and pictures
+
+A media line is a paragraph of its own: one line, a blank line before and after, nothing else on it, and not inside a list or a quote.
+
+```markdown
+I gave the talk at the meetup in March.
+
+![Recording of the talk: building a search index in a weekend](https://www.youtube.com/watch?v=<id> "Berlin, March 2026")
+
+The code is on GitHub:
+
+![The search index's repository](https://github.com/<owner>/<repo>)
+```
+
+The address can be:
+
+| Address | What readers see |
+|---|---|
+| An X post: `https://x.com/<handle>/status/<id>` (twitter.com too) | X's own embed of the post |
+| A GitHub repository: `https://github.com/<owner>/<repo>`, nothing deeper | A card with its description, language and stars. An issue, a file or a profile stays a link. |
+| A YouTube or Vimeo video: `youtube.com/watch?v=`, `youtu.be/`, `youtube.com/shorts/`, `vimeo.com/<id>` | The video's picture and a play button. Nothing loads from YouTube or Vimeo until the reader presses play. |
+| A video file: an `https://` address ending in `.mp4`, `.m4v`, `.webm` or `.mov` | The browser's own player. Entry doesn't host videos: the file stays where it is. |
+| A picture in this draft: `image:<key>` | The picture |
+
+- **Write the address and nothing else.** Entry reads the post, repository or video itself after the save and draws it. An address it doesn't recognise, and one that is private, deleted or can't be embedded, shows as a plain link.
+- **The text in brackets** describes it for people who can't see it, at most 300 characters. **The caption** in quotes is optional and shows under it, at most 200. Neither holds markup: write `\]`, `\"` and `\\` for those characters.
+- **A post holds up to 20 embeds and videos together**, and 3 pictures on Free or 30 on Pro.
+- **Pictures are added by the owner** in Entry's studio; you can't add one. A draft you read may already have picture lines (`![…](image:<key>)`): keep each key as it is and where the owner put it unless they ask you to move or remove it, and never write a key you didn't read in this draft. You may improve a description or a caption when asked.
 
 ## Errors (MCP)
 
