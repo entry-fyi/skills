@@ -4,7 +4,7 @@
 
 | Skill | What it teaches |
 |---|---|
-| [`entry`](skills/entry/SKILL.md) | Working with **your own** Entry through `https://entry.fyi/mcp`, or, when MCP can't be used, through the `entry` command line on your machine: read your profile and drafts, write and edit drafts, propose profile changes and ask you to publish. The right tool or command for each request, revisions and conflicts, field limits, the body's Markdown (prompt blocks, X posts, GitHub repositories and videos included), and the rule that you approve everything public. |
+| [`entry`](skills/entry/SKILL.md) | Working with **your own** Entry through `https://entry.fyi/mcp`, or, when MCP can't be used, through the `entry` command line on your machine: read your profile and drafts, write and edit drafts, add pictures to them, propose profile changes and ask you to publish. The right tool or command for each request, revisions and conflicts, field limits, the body's Markdown (prompt blocks, X posts, GitHub repositories and videos included), and the rule that you approve everything public. |
 | [`entry-public-profiles`](skills/entry-public-profiles/SKILL.md) | Looking up **published** Entries through the public, read-only API (no account or key): search, profiles, work, projects, writing and links. |
 
 ## Install
