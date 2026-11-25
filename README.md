@@ -1,5 +1,7 @@
 # Entry skills
 
+[![Entry MCP connector](https://glama.ai/mcp/connectors/fyi.entry/entry/badges/score.svg)](https://glama.ai/mcp/connectors/fyi.entry/entry)
+
 [Agent Skills](https://agentskills.io) and plugins for [Entry](https://entry.fyi), the personal homepage for busy professionals. They teach an AI agent to work with your Entry through [Entry's MCP server](https://github.com/entry-fyi/mcp) or, on your own machine, the optional [`entry` command line](https://entry.fyi/developers#cli), and to look people and companies up on Entry through its public API.
 
 | Skill | What it teaches |
